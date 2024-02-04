@@ -10,12 +10,20 @@ import org.slf4j.Logger;
 @Plugin(
         id = "universalban",
         name = "UniversalBan",
-        version = "1.0.0"
+        description = "UniversalBan allows you to ban a player from your Velocity network!",
+        url = "https://github.com/tkbstudios/UniversalBan",
+        version = "1.0.0",
+        authors = {
+                "TKB Studios"
+        }
 )
 
 public class UniversalBan {
 
-    private Logger logger;
+    private final Logger logger;
+
+    private final ProxyServer proxy;
+
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
@@ -23,6 +31,17 @@ public class UniversalBan {
 
     @Inject
     public UniversalBan(ProxyServer proxy, Logger logger) {
+        this.proxy = proxy;
+        this.logger = logger;
 
+        logger.info("UniversalBan has been initialized successfully!");
+    }
+
+    public Logger getLogger() {
+        return logger;
+    }
+
+    public ProxyServer getProxy() {
+        return proxy;
     }
 }
